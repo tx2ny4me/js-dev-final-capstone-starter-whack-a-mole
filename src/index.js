@@ -2,7 +2,7 @@ const holes = document.querySelectorAll('.hole');
 const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
-const timerDisplay = document.querySelector('#timer'); // use querySelector() to get the timer element.
+const timerDisplay = document.querySelector('#timer'); // Use querySelector() to get the timer element
 
 let time = 0;
 let timer;
@@ -41,7 +41,7 @@ function randomInteger(min, max) {
 function setDelay(difficulty) {
   setDelay("easy") //> Returns 1500
   setDelay("normal") //> Returns 1000
-  setDelay("hard") //> Returns 856 (returns a random number between 600 and 1200).
+  setDelay("hard") //> Returns 856 (returns a random number between 600 and 1200)
 }
 
 /**
@@ -91,12 +91,12 @@ function chooseHole(holes) {
 */
 function gameOver() {
   // TODO: Write your code here
-  if time > 0:
-    timeoutId = showUp()
-    return timeoutId
-  else
-    gameStopped = stopGame()
-    return gameStopped
+  // if time > 0:
+  //   timeoutId = showUp()
+  //   return timeoutId
+  // else
+  //   gameStopped = stopGame()
+  //   return gameStopped
 }
 
 /**
@@ -109,8 +109,8 @@ function gameOver() {
 *
 */
 function showUp() {
-  let delay = setDelay(); // TODO: Update so that it uses setDelay()
-  const hole = chooseHole();  // TODO: Update so that it use chooseHole()
+  let delay = setDelay(); // Update so that it uses setDelay()
+  const hole = chooseHole(); // Update so that it use chooseHole()
   return showAndHide(hole, delay);
 }
 
@@ -123,13 +123,11 @@ function showUp() {
 *
 */
 function showAndHide(hole, delay){
-  // TODO: call the toggleVisibility function so that it adds the 'show' class.
-  toggleVisibility(show);
+  toggleVisibility(show); // Call the toggleVisibility function so that it adds the 'show' class
   const timeoutID = setTimeout(() => {
-    // TODO: call the toggleVisibility function so that it removes the 'show' class when the timer times out.
-    toggleVisibility(show);
+    toggleVisibility(show); // Call the toggleVisibility function so that it removes the 'show' class when the timer times out
     gameOver();
-  }, 0); // TODO: change the setTimeout delay to the one provided as a parameter
+  }, delay); // Change the setTimeout delay to the one provided as a parameter
   return timeoutID;
 }
 
@@ -140,8 +138,7 @@ function showAndHide(hole, delay){
 *
 */
 function toggleVisibility(hole){
-  // TODO: add hole.classList.toggle so that it adds or removes the 'show' class.
-  hole.classList.toggle("show");
+  hole.classList.toggle("show"); // Add hole.classList.toggle so that it adds or removes the 'show' class
   return hole;
 }
 
@@ -156,9 +153,9 @@ function toggleVisibility(hole){
 *
 */
 function updateScore() {
-  // TODO: Write your code here
-
-  return points;
+  points = points + 1; // Increment the points global variable by 1 point
+  score.textContent = points; // Update score.textContent with points
+  return points; // Return points
 }
 
 /**
@@ -169,10 +166,9 @@ function updateScore() {
 *
 */
 function clearScore() {
-  // TODO: Write your code here
-  // points = 0;
-  // score.textContent = points;
-  return points;
+  points = 0; // Set the points global variable to 0
+  score.textContent = points; // Update score.textContent
+  return points; // Return points;
 }
 
 /**
@@ -194,7 +190,6 @@ function updateTimer() {
 *
 */
 function startTimer() {
-  // TODO: Write your code here
   timer = setInterval(updateTimer, 1000);
   return timer;
 }
@@ -208,9 +203,8 @@ function startTimer() {
 *
 */
 function whack(event) {
-  // TODO: Write your code here.
-  // call updateScore()
-  return points;
+  updateScore(); // Call updateScore()
+  return points; // return points
 }
 
 /**
@@ -219,9 +213,10 @@ function whack(event) {
 * for an example on how to set event listeners using a for loop.
 */
 function setEventListeners(){
-  // TODO: Write your code here
-
-  return moles;
+  moles.forEach(
+    mole => mole.addEventListener('click', whack)
+  ); // For each mole add the whack event handler when a player clicks on the mole
+  return moles; // Return moles
 }
 
 /**
