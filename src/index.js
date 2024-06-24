@@ -39,9 +39,13 @@ function randomInteger(min, max) {
  *
  */
 function setDelay(difficulty) {
-  setDelay("easy") //> Returns 1500
-  setDelay("normal") //> Returns 1000
-  setDelay("hard") //> Returns 856 (returns a random number between 600 and 1200)
+  if (difficulty === "easy") {
+    return 1500; //> Returns 1500
+  } else if (difficulty === "normal") {
+    return 1000; //> Returns 1000
+  } else if (difficulty === "hard") {
+    return randomInteger(600, 1200); //> Returns a random number between 600 and 1200
+  }
 }
 
 /**
@@ -59,8 +63,7 @@ function setDelay(difficulty) {
  * chooseHole(holes) //> returns one of the 9 holes that you defined
  */
 function chooseHole(holes) {
-  const holes = document.querySelectorAll('.hole');
-  const index = randomInteger(0,8);
+  const index = randomInteger(0, 8);
   const hole = holes[index];
   if (hole === lastHole) {
     return chooseHole(holes)
@@ -109,8 +112,8 @@ function gameOver() {
 *
 */
 function showUp() {
-  let delay = setDelay(); // Update so that it uses setDelay()
-  const hole = chooseHole(); // Update so that it use chooseHole()
+  let delay = setDelay(difficulty); // Update so that it uses setDelay()
+  const hole = chooseHole(holes); // Update so that it use chooseHole()
   return showAndHide(hole, delay);
 }
 
@@ -123,9 +126,9 @@ function showUp() {
 *
 */
 function showAndHide(hole, delay){
-  toggleVisibility(show); // Call the toggleVisibility function so that it adds the 'show' class
+  toggleVisibility(hole); // Call the toggleVisibility function so that it adds the 'show' class
   const timeoutID = setTimeout(() => {
-    toggleVisibility(show); // Call the toggleVisibility function so that it removes the 'show' class when the timer times out
+    toggleVisibility(hole); // Call the toggleVisibility function so that it removes the 'show' class when the timer times out
     gameOver();
   }, delay); // Change the setTimeout delay to the one provided as a parameter
   return timeoutID;
