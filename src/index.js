@@ -8,7 +8,7 @@ let time = 0;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "hard";
+let difficulty = "easy";
 
 /**
  * Generates a random integer within a range.
@@ -93,13 +93,13 @@ function chooseHole(holes) {
 *
 */
 function gameOver() {
-  // TODO: Write your code here
-  // if time > 0:
-  //   timeoutId = showUp()
-  //   return timeoutId
-  // else
-  //   gameStopped = stopGame()
-  //   return gameStopped
+  if (time > 0) {
+    timeoutId = showUp();
+    return timeoutId;
+  } else {
+    gameStopped = stopGame();
+    return gameStopped;
+  }
 }
 
 /**
