@@ -3,6 +3,8 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer'); // Use querySelector() to get the timer element
+const song = new Audio('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/molesong.mp3?raw=true');
+const hit = new Audio('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/hit.mp3?raw=true');
 
 let time = 10;
 let timer;
@@ -207,8 +209,9 @@ function startTimer() {
 *
 */
 function whack(event) {
+  playAudio(hit); // Plays audio
   updateScore(); // Call updateScore()
-  return points; // return points
+  return points; // Return points
 }
 
 /**
@@ -241,7 +244,7 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  // stopAudio(song); //optional
+  stopAudio(song); // Stops audio
   clearInterval(timer);
   return "game stopped";
 }
@@ -253,6 +256,7 @@ function stopGame(){
 *
 */
 function startGame(){
+  playAudio(song); // Plays audio
   clearScore(); // Resets score
   let time = 10;
   setDuration(time);
@@ -263,6 +267,23 @@ function startGame(){
 }
 
 startButton.addEventListener("click", startGame);
+
+/**
+* 
+* Functions to play and stop audio.
+* 
+*/
+function playAudio(audioObject) {
+  audioObject.play();
+}
+
+function stopAudio(audioObject) {
+  audioObject.pause();
+}
+
+function play() {
+  playAudio(song);
+}
 
 
 // Please do not modify the code below.
