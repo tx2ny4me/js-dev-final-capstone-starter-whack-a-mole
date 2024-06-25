@@ -4,7 +4,7 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer'); // Use querySelector() to get the timer element
 
-let time = 0;
+let time = 10;
 let timer;
 let lastHole = 0;
 let points = 0;
@@ -156,7 +156,8 @@ function toggleVisibility(hole){
 *
 */
 function updateScore() {
-  points = points + 1; // Increment the points global variable by 1 point
+  points++; // Increment the points global variable by 1 point
+  console.log(points);
   score.textContent = points; // Update score.textContent with points
   return points; // Return points
 }
@@ -207,6 +208,7 @@ function startTimer() {
 *
 */
 function whack(event) {
+  console.log("whack!");
   updateScore(); // Call updateScore()
   return points; // return points
 }
@@ -253,7 +255,9 @@ function stopGame(){
 *
 */
 function startGame(){
-  setDuration(10);
+  setDuration(time);
+  setEventListeners();
+  startTimer();
   showUp();
   return "game started";
 }
