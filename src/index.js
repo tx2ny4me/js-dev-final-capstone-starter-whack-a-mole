@@ -157,7 +157,6 @@ function toggleVisibility(hole){
 */
 function updateScore() {
   points++; // Increment the points global variable by 1 point
-  console.log(points);
   score.textContent = points; // Update score.textContent with points
   return points; // Return points
 }
@@ -208,7 +207,6 @@ function startTimer() {
 *
 */
 function whack(event) {
-  console.log("whack!");
   updateScore(); // Call updateScore()
   return points; // return points
 }
@@ -243,7 +241,7 @@ function setDuration(duration) {
 *
 */
 function stopGame(){
-  // stopAudio(song);  //optional
+  // stopAudio(song); //optional
   clearInterval(timer);
   return "game stopped";
 }
@@ -255,6 +253,8 @@ function stopGame(){
 *
 */
 function startGame(){
+  clearScore(); // Resets score
+  let time = 10;
   setDuration(time);
   setEventListeners();
   startTimer();
