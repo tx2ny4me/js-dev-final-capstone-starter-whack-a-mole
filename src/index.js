@@ -3,14 +3,29 @@ const moles = document.querySelectorAll('.mole');
 const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer'); // Use querySelector() to get the timer element
-const song = new Audio('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/molesong.mp3?raw=true');
-const hit = new Audio('https://github.com/Thinkful-Ed/js-dev-final-capstone-starter/blob/main/assets/hit.mp3?raw=true');
+// Add audios
+const song = new Audio('/assets/molesong.mp3?raw=true');
+const hit = new Audio('/assets/hit.mp3?raw=true');
+// Add dropdown selection for difficulty
+const selectElement = document.getElementById('select');
+const options = ['easy','normal','hard']; // Create options
+options.forEach(option => {
+  const opt = document.createElement('option');
+  opt.value = option;
+  opt.textContent = option;
+  selectElement.appendChild(opt);
+})
+let difficulty = selectElement.value;
+selectElement.addEventListener('change', (event) => {
+  difficulty = event.target.value;
+  console.log(difficulty);
+});
 
 let time = 10;
 let timer;
 let lastHole = 0;
 let points = 0;
-let difficulty = "easy";
+// let difficulty = "easy";
 
 /**
  * Generates a random integer within a range.
@@ -256,7 +271,7 @@ function stopGame(){
 *
 */
 function startGame(){
-  playAudio(song); // Plays audio
+  loopAudio(song); // Plays audio in loop
   clearScore(); // Resets score
   let time = 10;
   setDuration(time);
@@ -275,6 +290,11 @@ startButton.addEventListener("click", startGame);
 */
 function playAudio(audioObject) {
   audioObject.play();
+}
+
+function loopAudio(audioObject) {
+  audioObject.loop = true;
+  playAudio(audioObject);
 }
 
 function stopAudio(audioObject) {
