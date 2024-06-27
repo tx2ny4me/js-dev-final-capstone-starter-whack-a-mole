@@ -4,10 +4,10 @@ const startButton = document.querySelector('#start');
 const score = document.querySelector('#score'); // Use querySelector() to get the score element
 const timerDisplay = document.querySelector('#timer'); // Use querySelector() to get the timer element
 // Add audios
-const song = new Audio('../assets/molesong.mp3');
-// const song = new Audio('https://github.com/tx2ny4me/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/molesong.mp3');
-const hit = new Audio('../assets/hit.mp3');
-// const hit = new Audio('https://github.com/tx2ny4me/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/hit.mp3');
+const song = new Audio('../assets/molesong.mp3?raw=true');
+// const song = new Audio('https://github.com/tx2ny4me/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/molesong.mp3?raw=true');
+const hit = new Audio('../assets/hit.mp3?raw=true');
+// const hit = new Audio('https://github.com/tx2ny4me/js-dev-final-capstone-starter-whack-a-mole/blob/main/assets/hit.mp3?raw=true');
 // Add dropdown selection for difficulty
 const selectElement = document.getElementById('select');
 const options = ['easy','normal','hard']; // Create options
